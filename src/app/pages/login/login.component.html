@@ -2,8 +2,30 @@
     title="Entre na sua conta"
     primaryBtnText = "Entre Agora"
     secondaryBtnText = "Cadastre-se Agora"
+    (submit)="submit()"
+    (navigate)="navigate()"
+    [disablePrimaryBtn]="!loginForm.valid"
 >
     <form [formGroup]="loginForm">
-        
+        <app-primary-input
+            formControlName ="email"
+            inputName="email"
+            type="email"
+            label="E-mail"
+            placeholder="giuliano@gmail.com"
+        >
+            <img src="/svg/email.svg"/>
+        </app-primary-input>
+
+        <app-primary-input
+            formControlName ="password"
+            inputName="password"
+            type="password"
+            label="Sua Senha"
+            placeholder="********"
+        >
+            <img src="/svg/password.svg"/>
+        </app-primary-input>
+        <span>Esqueceu sua senha?</span>
     </form>
 </app-default-login-layout>
