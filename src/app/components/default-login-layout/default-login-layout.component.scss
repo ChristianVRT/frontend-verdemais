@@ -97,3 +97,32 @@ main {
     }
 }
 
+
+@media (max-width: 1200px) {
+    main {
+        flex-direction: column; 
+    
+        .main-section {
+            display: none !important;
+        }
+        
+        .form-section {
+        
+            h2 {
+                margin-bottom: 25px;
+            }
+
+            img {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+
+            .btn-wrapper {
+                gap: 10px;
+            }
+        
+        }
+        
+    }
+
+}
