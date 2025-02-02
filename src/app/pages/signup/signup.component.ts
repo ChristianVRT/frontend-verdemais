@@ -21,14 +21,13 @@ interface SignupForm {
     PrimaryInputComponent,
   ],
   providers: [
-    LoginService,
-    ToastrService
+    LoginService
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-  signupForm!: FormGroup;
+  signupForm!: FormGroup<SignupForm>;
 
   constructor(
     private router: Router,
@@ -44,7 +43,7 @@ export class SignupComponent {
   }
 
   submit(){
-    this.loginService.login(this.signupForm.value.email, this.signupForm.value.password).subscribe({
+    this.loginService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password).subscribe({
       next: () => this.toastService.success("Login feito com Sucesso!"),
       error: () => this.toastService.error("Erro inesperado, tente novamente mais tarde."),
     })
