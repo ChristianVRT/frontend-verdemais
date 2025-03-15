@@ -34,15 +34,31 @@ export class LoginComponent {
     })
   }
 
+  ngOnInit(){
+    const signupEmail = sessionStorage.getItem("user-email");
+    if (signupEmail) {
+      this.loginForm.patchValue({ email: signupEmail });
+      sessionStorage.removeItem("user-email");
+    }
+  }
+
   submit(){
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => this.toastService.success("Login feito com Sucesso!"),
+      next: () => { 
+        this.toastService.success("Login feito com Sucesso!")
+        this.navigateUser();
+
+      },
       error: () => this.toastService.error("Erro inesperado, tente novamente mais tarde."),
     })
   }
 
-  navigate(){
+  navigateCadastro(){
     this.router.navigate(["signup"])
+  }
+  
+  navigateUser(){
+    this.router.navigate(["user"])
   }
 
 }
