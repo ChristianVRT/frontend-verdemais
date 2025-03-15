@@ -1,9 +1,10 @@
 import { Component, HostListener } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
@@ -24,6 +25,6 @@ export class SidebarComponent {
   }
 
   isAdmin(): boolean {
-    return sessionStorage.getItem("user-role") === "ADMIN";
+    return sessionStorage.getItem("user-role") != "ADMIN";
   }
 }

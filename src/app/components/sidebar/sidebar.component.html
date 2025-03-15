@@ -6,56 +6,54 @@
   <ul>
     @if (isAdmin()) {
       <li>
-        <a routerLink="/admin-dashboard">
+        <a routerLink="/dashboard/admin-dashboard">
           <img src="/svg/AdminDashboard.svg"/>
           <span>Vendas Realizadas</span>
         </a>
       </li>
       <li>
-        <a routerLink="/user-management">
+        <a routerLink="/dashboard/gerenciar-mercadoria">
           <img src="/svg/ManageUsers.svg"/>
           <span>Gerenciar Mercadoria</span>
         </a>
       </li>
       <li>
-        <a routerLink="/user-management">
+        <a routerLink="/dashboard/user-management">
           <img src="/svg/ManageUsers.svg"/>
           <span>Gerenciar Usuários</span>
         </a>
       </li>
     } @else {
       <li>
-        <a routerLink="/market">
+        <a routerLink="/dashboard/market">
           <img src="/svg/Mercado.svg"/>
           <span>Mercado</span>
         </a>
       </li>
       <li>
-        <a routerLink="/history">
+        <a routerLink="/dashboard/history">
           <img src="/svg/Histórico.svg"/>
           <span>Histórico</span>
         </a>
       </li>
     }
-
     <li>
-      <a routerLink="/profile">
+      <a routerLink="/dashboard/profile">
         <img src="/svg/Perfil.svg"/>
         <span>Perfil</span>
       </a>
     </li>
     <li>
-      <a routerLink="/contact">
+      <a routerLink="/dashboard/contact">
         <img src="/svg/Contato.svg"/>
         <span>Contato</span>
       </a>
     </li>
     <li>
-      <a routerLink="/about">
+      <a routerLink="/dashboard/about">
         <img src="/svg/Sobre.svg"/>
         <span>Sobre</span>
       </a>
     </li>
-    
   </ul>
 </div>
