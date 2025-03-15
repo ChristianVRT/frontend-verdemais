@@ -1,19 +1,21 @@
 @import "../../../styles/variables.scss";
 
 .dashboard-container {
+  display: flex;
+  height: 100vh;
+
+
+  .content-area {
     display: flex;
-    height: 100vh; // Garante que o layout cubra toda a altura da janela
-  
-    app-sidebar {
-        transition: width 0.3s ease;
-      }
-  
-    .main-content {
-      flex-grow: 1; 
-      background-color: $green-bg;
-      color: #555;
-      padding: 20px;
-      overflow-y: auto;
-      transition: margin-left 0.3s ease; // Transição suave para o movimento
-    }
+    flex-direction: column;
+    flex-grow: 1; 
   }
+
+  .main-content {
+    flex-grow: 1;
+    background-color: $green-bg;
+    color: #555;
+    padding: 20px;
+    overflow-y: auto;
+  }
+}
