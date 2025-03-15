@@ -1,0 +1,13 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+    <button (click)="toggleSidebar()" class="toggle-button"> 
+        <img src="/svg/Alface.svg" alt="Logo">
+        <h1 *ngIf="!isCollapsed">Verde Mais</h1>
+      </button>
+    <ul>
+      <li><a routerLink="/market"><img src="/svg/Mercado.svg"/> <span>Mercado</span></a></li>
+      <li><a routerLink="/history"><img src="/svg/Histórico.svg"/> <span>Histórico</span></a></li>
+      <li><a routerLink="/profile"><img src="/svg/Perfil.svg"/> <span>Perfil</span></a></li>
+      <li><a routerLink="/contact"><img src="/svg/Contato.svg"/> <span>Contato</span></a></li>
+      <li><a routerLink="/about"><img src="/svg/Sobre.svg"/> <span>Sobre</span></a></li>
+    </ul>
+  </div>
