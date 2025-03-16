@@ -25,6 +25,6 @@ export class SidebarComponent {
   }
 
   isAdmin(): boolean {
-    return sessionStorage.getItem("user-role") != "ADMIN";
+    return sessionStorage.getItem("user-role") === "ADMIN";
   }
 }
