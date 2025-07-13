@@ -9,51 +9,51 @@
   </button>
   <ul>
     @if (isAdmin()) {
-      <li>
+      <li [ngClass]="{'active': isRouteActive('/dashboard/admin-dashboard')}">
         <a routerLink="/dashboard/admin-dashboard">
           <img src="/svg/Vendas-Realizadas.svg"/>
           <span>Vendas Realizadas</span>
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'active': isRouteActive('/dashboard/gerenciar-mercadoria')}">
         <a routerLink="/dashboard/gerenciar-mercadoria">
           <img src="/svg/Gerenciar-Mercadorias.svg"/>
           <span>Gerenciar Mercadoria</span>
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'active': isRouteActive('/dashboard/user-management')}">
         <a routerLink="/dashboard/user-management">
           <img src="/svg/Gerenciar-Usuarios.svg"/>
           <span>Gerenciar Usuários</span>
         </a>
       </li>
     } @else {
-      <li>
+      <li [ngClass]="{'active': isRouteActive('/dashboard/market')}">
         <a routerLink="/dashboard/market">
           <img src="/svg/Mercado.svg"/>
           <span>Mercado</span>
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'active': isRouteActive('/dashboard/history')}">
         <a routerLink="/dashboard/history">
           <img src="/svg/Histórico.svg"/>
           <span>Histórico</span>
         </a>
       </li>
     }
-    <li>
+    <li [ngClass]="{'active': isRouteActive('/dashboard/profile')}">
       <a routerLink="/dashboard/profile">
         <img src="/svg/Perfil.svg"/>
         <span>Perfil</span>
       </a>
     </li>
-    <li>
+    <li [ngClass]="{'active': isRouteActive('/dashboard/contact')}">
       <a routerLink="/dashboard/contact">
         <img src="/svg/Contato.svg"/>
         <span>Contato</span>
       </a>
     </li>
-    <li>
+    <li [ngClass]="{'active': isRouteActive('/dashboard/about')}">
       <a routerLink="/dashboard/about">
         <img src="/svg/Sobre.svg"/>
         <span>Sobre</span>

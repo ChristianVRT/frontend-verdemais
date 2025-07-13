@@ -16,7 +16,7 @@ export class SidebarComponent {
     return window.innerWidth < 1200;
   }
 
-  constructor() {
+  constructor(private router: Router) {
     this.isCollapsed = this.isSmallScreen;
   }
 
@@ -37,5 +37,9 @@ export class SidebarComponent {
 
   isAdmin(): boolean {
     return sessionStorage.getItem("user-role") === "ADMIN";
+  }
+
+  isRouteActive(route: string): boolean {
+    return this.router.isActive(route, { paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' });
   }
 }
