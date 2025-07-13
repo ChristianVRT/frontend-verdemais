@@ -1,6 +1,10 @@
 <div class="sidebar" [class.collapsed]="isCollapsed">
-  <button (click)="toggleSidebar()" class="toggle-button">
-    <img src="/svg/Alface.svg" alt="Logo">
+  <button 
+    (click)="toggleSidebar()" 
+    class="toggle-button" 
+    [disabled]="isSmallScreen"
+    [ngClass]="{'unclickable': isSmallScreen}">
+    <img src="/svg/Alface.svg" alt="Logo" class="LogoIcon">
     <h1 class="LogoText">Verde Mais</h1>
   </button>
   <ul>

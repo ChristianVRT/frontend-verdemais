@@ -1,1 +1,114 @@
-<p>gerenciar-mercadoria works!</p>
+<div class="mercadoria-container">
+  <h2>Mercadorias</h2>
+  <div *ngIf="loading">Carregando...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <button (click)="abrirFormularioAdicionar()" class="abrir-adicionar">Adicionar Mercadoria</button>
+
+  <div *ngIf="mostrarFormularioAdicionar" class="adicionar-modal">
+    <div class="adicionar-modal-content">
+      <h3 class="modal-title">Adicionar Mercadoria</h3>
+      <form (ngSubmit)="adicionarMercadoria()" class="mercadoria-form">
+        <div class="form-group">
+          <label for="nome">Nome da mercadoria</label>
+          <input id="nome" type="text" [(ngModel)]="novaMercadoria.nome" name="nome" placeholder="Ex: Alface Americana" required>
+        </div>
+        <div class="form-group">
+          <label for="preco">Preço (por Kg)</label>
+          <div class="input-with-unit">
+            <input id="preco" type="number" [(ngModel)]="novaMercadoria.preco" name="preco" placeholder="Ex: 2.99" required min="0" step="0.01">
+            <span class="unit-label">R$/Kg</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="quantidade">Quantidade em estoque</label>
+          <input id="quantidade" type="number" [(ngModel)]="novaMercadoria.quantidade" name="quantidade" placeholder="Ex: 43" required min="0">
+        </div>
+        <div class="form-group">
+          <label for="habilitado">Habilitado</label>
+          <label class="toggle-switch">
+            <input id="habilitado" type="checkbox" [(ngModel)]="novaMercadoria.habilitado" name="habilitado">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button type="submit">Salvar</button>
+          <button type="button" (click)="fecharFormularioAdicionar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="mercadoriaEditada" class="adicionar-modal">
+    <div class="adicionar-modal-content">
+      <h3 class="modal-title">Editar Mercadoria</h3>
+      <form (ngSubmit)="salvarEdicao(mercadoriaEditada)" class="mercadoria-form">
+        <div class="form-group">
+          <label for="nomeEdit">Nome da mercadoria</label>
+          <input id="nomeEdit" type="text" [(ngModel)]="mercadoriaEditada.nome" name="nomeEdit" placeholder="Ex: Alface Americana" required>
+        </div>
+        <div class="form-group">
+          <label for="precoEdit">Preço (por Kg)</label>
+          <div class="input-with-unit">
+            <input id="precoEdit" type="number" [(ngModel)]="mercadoriaEditada.preco" name="precoEdit" placeholder="Ex: 2.99" required min="0" step="0.01">
+            <span class="unit-label">R$/Kg</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="quantidadeEdit">Quantidade em estoque</label>
+          <input id="quantidadeEdit" type="number" [(ngModel)]="mercadoriaEditada.quantidade" name="quantidadeEdit" placeholder="Ex: 43" required min="0">
+        </div>
+        <div class="form-group">
+          <label for="habilitadoEdit">Habilitado</label>
+          <label class="toggle-switch">
+            <input id="habilitadoEdit" type="checkbox" [(ngModel)]="mercadoriaEditada.habilitado" name="habilitadoEdit">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button type="submit">Salvar</button>
+          <button type="button" (click)="cancelarEdicao()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && mercadorias.length" class="mercadoria-grid">
+    <div class="mercadoria-card" *ngFor="let m of mercadorias">
+      <div class="card-header">
+        <span class="card-id">#{{ m.id }}</span>
+        <span class="card-user">{{ m.nomeUsuario || '-' }}</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">{{ m.nome }}</h4>
+        <div class="card-info">
+          <div><strong>Preço:</strong> <span class="card-preco">{{ m.preco | currency:'BRL' }}</span> <span class="unit-label">/Kg</span></div>
+          <div><strong>Quantidade:</strong> {{ m.quantidade }}</div>
+        </div>
+        <div class="card-habilitado">
+          <label class="toggle-switch">
+            <input type="checkbox" [(ngModel)]="m.habilitado" (change)="toggleHabilitado(m)">
+            <span class="slider"></span>
+          </label>
+          <span class="habilitado-label">{{ m.habilitado ? 'Habilitado' : 'Desabilitado' }}</span>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button *ngIf="editandoId !== m.id" (click)="editarMercadoria(m)" class="btn-editar">Editar</button>
+        <button (click)="confirmarExclusao(m.id)" class="btn-excluir">Excluir</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!loading && !error && !mercadorias.length">Nenhuma mercadoria encontrada.</div>
+
+  <!-- Pop-up de confirmação de exclusão -->
+  <div *ngIf="idParaExcluir" class="popup-confirmacao">
+    <div class="popup-content">
+      <p>Tem certeza que deseja excluir esta mercadoria?</p>
+      <div class="popup-actions">
+        <button (click)="excluirMercadoria(idParaExcluir)" class="btn-excluir">Sim, excluir</button>
+        <button (click)="idParaExcluir = null" class="btn-cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
