@@ -259,11 +259,14 @@
 .card-preco {
   color: $secondary-color;
   font-weight: 600;
+  margin-right: 0;
 }
 .unit-label {
+  margin-left: 0;
   color: $primary-color;
   font-size: 0.95rem;
   font-weight: 500;
+  margin-left: 0.1rem;
 }
 .card-habilitado {
   display: flex;
@@ -321,37 +324,83 @@
 .toggle-switch input:checked + .slider:before {
   transform: translateX(16px);
 }
-@media (max-width: 700px) {
-  .mercadoria-table, .mercadoria-table thead, .mercadoria-table tbody, .mercadoria-table th, .mercadoria-table td, .mercadoria-table tr {
-    display: block;
-    width: 100%;
-  }
-  .mercadoria-table th {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-  .mercadoria-table td {
-    border: none;
-    position: relative;
-    padding-left: 50%;
-    min-height: 40px;
-    background: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-  }
-  .mercadoria-table td:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 45%;
-    padding-left: 0.5rem;
-    white-space: nowrap;
-    font-weight: bold;
-    color: #888;
-    content: attr(data-label);
-  }
-  .mercadoria-table tr {
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #eee;
-  }
+.btn-ajuste {
+  background: $secondary-color;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.btn-ajuste:hover {
+  background: $primary-color;
+}
+.info-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.info-label {
+  color: $secondary-color;
+  font-weight: 500;
+  margin-right: 0.7rem;
+  min-width: 90px;
+}
+.info-box {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+.card-preco, .unit-label {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+.card-quantidade {
+  color: $primary-color;
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin: 0 0.3rem;
+}
+.adicionar-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #eaf7ea;
+  border: 2px dashed $primary-color;
+  color: $primary-color;
+  transition: background 0.2s, border 0.2s;
+  min-height: 140px;
+}
+.adicionar-card:hover {
+  background: #d6f5d6;
+  border-color: $secondary-color;
+}
+.adicionar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.adicionar-icone {
+  font-size: 2.7rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+.adicionar-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $primary-color;
 }

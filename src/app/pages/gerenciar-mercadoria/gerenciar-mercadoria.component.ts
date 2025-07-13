@@ -127,4 +127,40 @@ export class GerenciarMercadoriaComponent implements OnInit {
       }
     });
   }
+
+  ajustarPreco(mercadoria: MercadoriaResponse, tipo: 'mais' | 'menos') {
+    let novoPreco = mercadoria.preco;
+    if (tipo === 'mais') {
+      // Se termina em .49, vai para .99, senão soma 1 e vai para .49
+      if (Number((novoPreco % 1).toFixed(2)) === 0.49) {
+        novoPreco = Math.floor(novoPreco) + 0.99;
+      } else {
+        novoPreco = Math.floor(novoPreco + 1) + 0.49;
+      }
+    } else {
+      // Se termina em .99, vai para .49, senão diminui 1 e vai para .99
+      if (Number((novoPreco % 1).toFixed(2)) === 0.99) {
+        novoPreco = Math.floor(novoPreco) + 0.49;
+      } else {
+        novoPreco = Math.max(0, Math.floor(novoPreco - 1) + 0.99);
+      }
+    }
+    this.mercadoriaService.atualizarMercadoria(mercadoria.id, { ...mercadoria, preco: Number(novoPreco.toFixed(2)) }).subscribe({
+      next: () => this.carregarMercadorias(),
+      error: () => this.error = 'Erro ao atualizar preço.'
+    });
+  }
+
+  ajustarQuantidade(mercadoria: MercadoriaResponse, tipo: 'mais' | 'menos') {
+    let novaQuantidade = mercadoria.quantidade;
+    if (tipo === 'mais') {
+      novaQuantidade += 1;
+    } else {
+      novaQuantidade = Math.max(0, novaQuantidade - 1);
+    }
+    this.mercadoriaService.atualizarMercadoria(mercadoria.id, { ...mercadoria, quantidade: novaQuantidade }).subscribe({
+      next: () => this.carregarMercadorias(),
+      error: () => this.error = 'Erro ao atualizar quantidade.'
+    });
+  }
 }

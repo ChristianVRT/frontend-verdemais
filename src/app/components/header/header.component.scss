@@ -11,9 +11,27 @@
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  .header-left {
+    flex: 1;
+    text-align: left;
+  }
+
+  .header-right {
+    flex: 1;
+    text-align: right;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #111;
+  }
+
   .greeting {
-    font-size: 26px; 
-    color: black;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #111;
     margin: 20px 0; 
   }
 

@@ -3,8 +3,6 @@
   <div *ngIf="loading">Carregando...</div>
   <div *ngIf="error">{{ error }}</div>
 
-  <button (click)="abrirFormularioAdicionar()" class="abrir-adicionar">Adicionar Mercadoria</button>
-
   <div *ngIf="mostrarFormularioAdicionar" class="adicionar-modal">
     <div class="adicionar-modal-content">
       <h3 class="modal-title">Adicionar Mercadoria</h3>
@@ -82,8 +80,23 @@
       <div class="card-body">
         <h4 class="card-title">{{ m.nome }}</h4>
         <div class="card-info">
-          <div><strong>Preço:</strong> <span class="card-preco">{{ m.preco | currency:'BRL' }}</span> <span class="unit-label">/Kg</span></div>
-          <div><strong>Quantidade:</strong> {{ m.quantidade }}</div>
+          <div class="info-group">
+            <div class="info-label">Preço:</div>
+            <div class="info-box">
+              <span class="card-preco">{{ m.preco | currency:'BRL' }}</span>
+              <span class="unit-label">/Kg</span>
+              <button class="btn-ajuste" (click)="ajustarPreco(m, 'menos')">-</button>
+              <button class="btn-ajuste" (click)="ajustarPreco(m, 'mais')">+</button>
+            </div>
+          </div>
+          <div class="info-group">
+            <div class="info-label">Quantidade:</div>
+            <div class="info-box">
+              <span class="card-quantidade">{{ m.quantidade }}</span>
+              <button class="btn-ajuste" (click)="ajustarQuantidade(m, 'menos')">-</button>
+              <button class="btn-ajuste" (click)="ajustarQuantidade(m, 'mais')">+</button>
+            </div>
+          </div>
         </div>
         <div class="card-habilitado">
           <label class="toggle-switch">
@@ -96,6 +109,12 @@
       <div class="card-actions">
         <button *ngIf="editandoId !== m.id" (click)="editarMercadoria(m)" class="btn-editar">Editar</button>
         <button (click)="confirmarExclusao(m.id)" class="btn-excluir">Excluir</button>
+      </div>
+    </div>
+    <div class="mercadoria-card adicionar-card" (click)="abrirFormularioAdicionar()">
+      <div class="adicionar-content">
+        <span class="adicionar-icone">+</span>
+        <span class="adicionar-label">Adicionar Mercadoria</span>
       </div>
     </div>
   </div>
